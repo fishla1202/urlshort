@@ -38,12 +38,15 @@ func main() {
 		  "path": "/hitest2",
 		  "url": "https://google.com"
 		}]`
-	jsonHanlder, err := urlshort.JsonHandler([]byte(json), yamlHandler)
+	jsonHandler, err := urlshort.JsonHandler([]byte(json), yamlHandler)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println("Starting the server on :8080")
-	http.ListenAndServe(":8080", jsonHanlder)
+	err = http.ListenAndServe(":8080", jsonHandler)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func defaultMux() *http.ServeMux {
