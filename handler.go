@@ -17,6 +17,7 @@ func MapHandler(pathsToUrls map[string]string, fallback http.Handler) http.Handl
 		path := request.URL.Path
 		if url, ok := pathsToUrls[path]; ok {
 			http.Redirect(writer, request, url, http.StatusFound)
+			return
 		}
 		fallback.ServeHTTP(writer, request)
 	}
