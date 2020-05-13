@@ -27,14 +27,13 @@ func main() {
 	// Build the YAMLHandler using the mapHandler as the
 	// fallback
 	if jsonFile != "" {
-		fmt.Println(jsonFile)
 		jsonData, err := ioutil.ReadFile(jsonFile)
 		if err != nil {
 			panic(err)
 		}
 		// Build the JSONHandler using the mapHandler as the
 		// fallback
-		Handler, err = urlshort.JsonHandler([]byte(jsonData), Handler)
+		Handler, err = urlshort.JsonHandler(jsonData, Handler)
 		if err != nil {
 			panic(err)
 		}
@@ -43,7 +42,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		Handler, err = urlshort.YAMLHandler([]byte(yamlData), Handler)
+		Handler, err = urlshort.YAMLHandler(yamlData, Handler)
 		if err != nil {
 			panic(err)
 		}
